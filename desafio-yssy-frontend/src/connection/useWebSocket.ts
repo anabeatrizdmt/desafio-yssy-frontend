@@ -17,15 +17,14 @@ const useWebSocket = (url: string) => {
                             ...previousProcessInfo,
                             ...processData.newProcesses
                         ].filter(process =>
-                            !processData.terminateProcesses
-                                .some((terminateProcess: ProcessInfo) => terminateProcess.processId === process.processId));
+                            !processData.terminatedProcesses.some((terminatedProcess: ProcessInfo) => terminatedProcess.processId === process.processId));
                         return updatedProcesses;
-                    })
+                    });
                 }
             } catch (error) {
                 console.log(error);
             }
-        }
+        };
     }, [url]);
     return processInfo;
 };
